@@ -1,12 +1,12 @@
 // ── Hasan Estudio Dashboard — Service Worker ──
-const CACHE = 'hasan-v2';
+const CACHE = 'hasan-v3';
 
 const SHELL = [
   './',
   './index.html',
   './manifest.json',
-  './icon.svg',
-  './icon-maskable.svg',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 // Install: cache the app shell
