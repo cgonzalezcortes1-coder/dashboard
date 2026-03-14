@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Full-bleed background (maskable: safe zone is center 80% = 410px, so pad 51px each side) -->
+  <rect width="512" height="512" fill="#1C1C1C"/>
+  <!-- H monogram within safe zone — left bar -->
+  <rect x="145" y="140" width="72" height="232" rx="10" fill="#F5A623"/>
+  <!-- H monogram within safe zone — right bar -->
+  <rect x="295" y="140" width="72" height="232" rx="10" fill="#F5A623"/>
+  <!-- H monogram within safe zone — crossbar -->
+  <rect x="145" y="222" width="222" height="68" rx="10" fill="#F5A623"/>
+</svg>

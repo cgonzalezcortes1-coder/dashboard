@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "/Users/Cesar/.nvm/versions/node/v22.22.1/bin/node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path'),b='/Users/Cesar/Documents/GitHub/dashboard',m={'.html':'text/html','.json':'application/json','.js':'application/javascript','.svg':'image/svg+xml','.png':'image/png','.css':'text/css'};h.createServer((q,r)=>{let u=q.url.split('?')[0];if(u==='/')u='/index.html';f.readFile(p.join(b,u),(e,d)=>{if(e){r.writeHead(404);r.end('Not found')}else{r.writeHead(200,{'Content-Type':m[p.extname(u)]||'text/plain'});r.end(d)}})}).listen(4321,()=>console.log('OK'))"],
+      "port": 4321
+    }
+  ]
+}
