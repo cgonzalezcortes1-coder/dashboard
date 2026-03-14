@@ -56,9 +56,11 @@
     }
     .logo-img {
       display: block;
-      height: 44px;        /* altura fija — sin recorte */
-      width: auto;         /* ancho proporcional (~203px) */
+      height: 88px;
+      width: auto;
+      max-width: 100%;     /* no desborda en mobile */
       object-fit: contain;
+      object-position: left center;
     }
 
     /* Botón instalar — esquina derecha del header, oculto por defecto */
