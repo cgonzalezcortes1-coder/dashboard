@@ -46,62 +46,46 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── INSTALL BANNER ── */
-    #install-banner {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      background: var(--orange);
-      color: var(--dark);
-      padding: 0.7rem 1.25rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-    #install-banner.visible { display: flex; }
-
-    #install-btn {
-      background: var(--dark);
-      color: var(--white);
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-family: inherit;
-      font-size: 0.78rem;
-      font-weight: 500;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: background 0.15s;
-    }
-    #install-btn:hover { background: #000; }
-
-    #dismiss-btn {
-      background: none;
-      border: none;
-      color: var(--orange-dark);
-      font-size: 1.1rem;
-      cursor: pointer;
-      padding: 0 0.25rem;
-      line-height: 1;
-      transition: color 0.15s;
-    }
-    #dismiss-btn:hover { color: var(--dark); }
-
     /* ── HEADER ── */
     header {
       background: #000;
-      padding-top: env(safe-area-inset-top);
-      overflow: hidden;
-      line-height: 0; /* elimina espacio bajo la imagen */
+      padding: calc(0.9rem + env(safe-area-inset-top)) 1.25rem 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .logo-img {
       display: block;
-      width: 100%;
-      height: auto;         /* escala proporcional en mobile */
-      max-height: 110px;    /* cap en desktop para no dominar la pantalla */
-      object-fit: cover;    /* recorta arriba/abajo cuando max-height aplica */
-      object-position: center center;
+      height: 44px;        /* altura fija — sin recorte */
+      width: auto;         /* ancho proporcional (~203px) */
+      object-fit: contain;
     }
+
+    /* Botón instalar — esquina derecha del header, oculto por defecto */
+    #install-btn {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: 1px solid rgba(245,166,35,0.5);
+      color: var(--orange);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: background 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    #install-btn.visible { display: flex; }
+    #install-btn:hover {
+      background: rgba(245,166,35,0.12);
+      border-color: var(--orange);
+    }
+    #install-btn svg { width: 13px; height: 13px; stroke: var(--orange); }
 
     /* ── MAIN ── */
     main {
@@ -223,15 +207,6 @@
 </head>
 <body>
 
-  <!-- ── Install Banner ── -->
-  <div id="install-banner">
-    <span>Instala el dashboard en tu dispositivo</span>
-    <div style="display:flex;gap:0.5rem;align-items:center">
-      <button id="install-btn">Instalar</button>
-      <button id="dismiss-btn" aria-label="Cerrar">✕</button>
-    </div>
-  </div>
-
   <!-- ── Header ── -->
   <header>
     <img
@@ -240,6 +215,14 @@
       alt="Hasan Estudio — escuchar es mirar"
       draggable="false"
     >
+    <!-- Botón instalar: visible solo cuando Chrome detecta que la PWA es instalable -->
+    <button id="install-btn" aria-label="Instalar app">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v13M7 11l5 5 5-5"/>
+        <path d="M5 20h14"/>
+      </svg>
+      Instalar
+    </button>
   </header>
 
   <!-- ── Main ── -->
@@ -362,30 +345,24 @@
   <script>
     // ── PWA Install Prompt ──
     let deferredPrompt;
-    const banner     = document.getElementById('install-banner');
     const installBtn = document.getElementById('install-btn');
-    const dismissBtn = document.getElementById('dismiss-btn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      banner.classList.add('visible');
+      installBtn.classList.add('visible');
     });
 
     installBtn.addEventListener('click', async () => {
       if (!deferredPrompt) return;
-      banner.classList.remove('visible');
+      installBtn.classList.remove('visible');
       deferredPrompt.prompt();
       await deferredPrompt.userChoice;
       deferredPrompt = null;
     });
 
-    dismissBtn.addEventListener('click', () => {
-      banner.classList.remove('visible');
-    });
-
     window.addEventListener('appinstalled', () => {
-      banner.classList.remove('visible');
+      installBtn.classList.remove('visible');
       deferredPrompt = null;
     });
 
