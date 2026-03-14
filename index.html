@@ -49,29 +49,11 @@
     /* ── HEADER ── */
     header {
       background: #000;
-      position: relative;
-      overflow: hidden;
       padding: calc(0.9rem + env(safe-area-inset-top)) 1.5rem 0.9rem;
       min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    /* Onda de fondo — invert+hue convierte blanco→negro y mantiene el naranja,
-       screen sobre negro hace que el negro "desaparezca" → solo flotan las ondas */
-    .wave-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: invert(1) hue-rotate(180deg);
-      mix-blend-mode: screen;
-      opacity: 0.6;
-      pointer-events: none;
-      user-select: none;
     }
 
     /* Texto del header */
@@ -135,6 +117,23 @@
       width: 100%;
       margin: 0 auto;
       padding: 1.75rem 1.25rem 2.5rem;
+      position: relative;
+      background: var(--bg);
+    }
+    /* Onda naranja detrás de las cards:
+       multiply sobre fondo crema → blanco=invisible, naranja=visible */
+    main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('hasan-wave.jpg') center / 100% auto no-repeat;
+      mix-blend-mode: multiply;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+    .section-label, .apps-grid {
+      position: relative;
+      z-index: 1;
     }
     .section-label {
       font-size: 0.65rem;
@@ -250,9 +249,6 @@
 
   <!-- ── Header ── -->
   <header>
-    <!-- Ondas en transparencia: blanco→invisible, naranja→visible sobre negro -->
-    <img class="wave-bg" src="hasan-wave.jpg" alt="" aria-hidden="true" draggable="false">
-
     <div class="header-content">
       <span class="header-brand">HASAN</span>
       <span class="header-divider">|</span>
