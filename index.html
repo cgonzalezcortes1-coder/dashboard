@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Raleway:wght@100;200;300;800&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +34,7 @@
       --bg:            #F4F1EC;
     }
 
-    html { height: 100%; }
+    html { height: 100%; overflow-x: hidden; }
 
     body {
       font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
@@ -44,6 +44,7 @@
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
 
     /* ── HEADER ── */
@@ -81,7 +82,7 @@
     }
     .header-page {
       font-family: 'Raleway', sans-serif;
-      font-weight: 200;
+      font-weight: 800;
       font-size: 0.78rem;
       color: rgba(245,166,35,0.55);
       letter-spacing: 0.22em;
@@ -114,6 +115,21 @@
     }
     #install-btn svg { width: 13px; height: 13px; stroke: var(--orange); }
 
+    /* ── WAVE DECORATION ──
+       Imagen absoluta sobre body → escapa del canvas central.
+       Mueve bottom / right para repositionar.
+       Cambia width para escalar. */
+    .wave-deco {
+      position: absolute;
+      bottom: 2.5rem;   /* distancia desde el fondo */
+      right: -8%;       /* sangra fuera del borde derecho */
+      width: 72%;       /* ~70% del viewport */
+      mix-blend-mode: multiply;
+      opacity: 0.3;
+      pointer-events: none;
+      user-select: none;
+    }
+
     /* ── MAIN ── */
     main {
       flex: 1;
@@ -122,18 +138,6 @@
       margin: 0 auto;
       padding: 1.75rem 1.25rem 2.5rem;
       position: relative;
-      background: var(--bg);
-    }
-    /* Onda naranja detrás de las cards:
-       multiply sobre fondo crema → blanco=invisible, naranja=visible */
-    main::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('hasan-wave.jpg') bottom right / auto auto no-repeat;
-      mix-blend-mode: multiply;
-      opacity: 0.28;
-      pointer-events: none;
     }
     .section-label, .apps-grid {
       position: relative;
@@ -380,6 +384,9 @@
 
     </div>
   </main>
+
+  <!-- ── Wave decoration (fuera del canvas, esquina inferior derecha) ── -->
+  <img class="wave-deco" src="hasan-wave.jpg" alt="" aria-hidden="true" draggable="false">
 
   <!-- ── Footer ── -->
   <footer>
