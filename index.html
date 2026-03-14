@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,22 +65,26 @@
       gap: 0.55rem;
     }
     .header-brand {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.6rem;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      font-size: 1.55rem;
       color: var(--orange);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
     .header-divider {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: rgba(245,166,35,0.35);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 100;
+      font-size: 1rem;
+      color: rgba(245,166,35,0.3);
+      letter-spacing: 0;
     }
     .header-page {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
       font-size: 0.78rem;
-      font-weight: 400;
-      color: rgba(245,166,35,0.65);
-      letter-spacing: 0.14em;
+      color: rgba(245,166,35,0.55);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -126,7 +130,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('hasan-wave.jpg') bottom right / 70% auto no-repeat;
+      background: url('hasan-wave.jpg') bottom right / auto auto no-repeat;
       mix-blend-mode: multiply;
       opacity: 0.28;
       pointer-events: none;
