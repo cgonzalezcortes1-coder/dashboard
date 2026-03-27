@@ -159,8 +159,18 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.875rem;
     }
+    /* Card sola en última fila → centrada */
+    .apps-grid > .app-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 0.4375rem);
+    }
+
     @media (min-width: 600px) {
       .apps-grid { gap: 1.125rem; }
+      .apps-grid > .app-card:last-child:nth-child(odd) {
+        width: calc(50% - 0.5625rem);
+      }
     }
 
     /* ── APP CARD ── */
