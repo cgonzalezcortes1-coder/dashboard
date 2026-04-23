@@ -1,5 +1,5 @@
 // ── Hasan Estudio Dashboard — Service Worker ──
-const CACHE = 'hasan-v3';
+const CACHE = 'hasan-v4';
 
 const SHELL = [
   './',
